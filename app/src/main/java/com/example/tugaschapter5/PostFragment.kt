@@ -49,13 +49,16 @@ class PostFragment : Fragment() {
 
         binding?.postButton?.setOnClickListener {
             val post=binding?.inputPost?.text.toString().trim()
-
             fragmentDialog(post)
+            val sendIntent = Intent(Intent.ACTION_VIEW)
+            sendIntent.putExtra("sms_body", post)
+            sendIntent.type = "vnd.android-dir/mms-sms"
+            startActivity(sendIntent)
         }
     }
     fun fragmentDialog(post: String){
-        val customDialogFragment=DialogFragment.newInstance("Fragment Dialog",post)
-        customDialogFragment.show(childFragmentManager,"custom")
+        val customDialogFragment=DialogFragment.newInstance("Are you sure want to post that?",post)
+        customDialogFragment.show(childFragmentManager,null)
     }
 
     companion object {

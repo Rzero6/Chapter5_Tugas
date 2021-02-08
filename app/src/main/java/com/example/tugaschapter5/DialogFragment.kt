@@ -1,5 +1,6 @@
 package com.example.tugaschapter5
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.example.tugaschapter5.databinding.FragmentDialogBinding
 
@@ -48,9 +50,9 @@ class DialogFragment : DialogFragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.tvHello?.text="Are you sure want to post that?"
         binding?.close?.setOnClickListener {
             val post=param2
+            binding?.tvHello?.text=param1
             val sendIntent = Intent(Intent.ACTION_VIEW)
             sendIntent.putExtra("sms_body", post)
             sendIntent.type = "vnd.android-dir/mms-sms"
@@ -58,8 +60,9 @@ class DialogFragment : DialogFragment(){
         }
 
     }
-    companion object {
 
+
+    companion object {
 
         // TODO: Rename and change types and number of parameters
         @JvmStatic
